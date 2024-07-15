@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toy System API Documentation</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Toy System API Documentation</h1>
+    <p>Welcome to the API documentation for the Toy System project.</p>
+  </header>
+
+  <section id="authentication">
+    <h2>Authentication</h2>
+
+    <h3>Login</h3>
+    <p>POST <code>/users/login</code></p>
+    <p>Authenticate a user and receive a JWT token.</p>
+    <pre><code>
+curl -X POST -H "Content-Type: application/json" \\
+  -d '{ "email": "john.doe@example.com", "password": "password123" }' \\
+  "http://localhost:3001/users/login"
+    </code></pre>
+  </section>
+
+  <section id="toys">
+    <h2>Toys</h2>
+
+    <h3>Get All Toys</h3>
+    <p>GET <code>/toys</code></p>
+    <p>Retrieve all toys in the system.</p>
+    <pre><code>
+curl -X GET "http://localhost:3001/toys"
+    </code></pre>
+
+    <h3>Search Toys by Name or Info</h3>
+    <p>GET <code>/toys/search?s=query</code></p>
+    <p>Search toys by name or info.</p>
+    <pre><code>
+curl -X GET "http://localhost:3001/toys/search?s=query"
+    </code></pre>
+
+    <h3>Get Toys by Category</h3>
+    <p>GET <code>/toys/category/:catname</code></p>
+    <p>Retrieve toys by category.</p>
+    <pre><code>
+curl -X GET "http://localhost:3001/toys/category/electronics"
+    </code></pre>
+
+    <h3>Add Toy</h3>
+    <p>POST <code>/toys</code></p>
+    <p>Add a new toy to the system.</p>
+    <pre><code>
+curl -X POST -H "Content-Type: application/json" \\
+  -H "x-api-key: your_jwt_token_here" \\
+  -d '{ "name": "Lego Set", "description": "Build your world with Lego bricks.", "category": "toys", "price": 29.99 }' \\
+  "http://localhost:3001/toys"
+    </code></pre>
+
+    <h3>Edit Toy</h3>
+    <p>PUT <code>/toys/:id</code></p>
+    <p>Edit an existing toy by ID.</p>
+    <pre><code>
+curl -X PUT -H "Content-Type: application/json" \\
+  -H "x-api-key: your_jwt_token_here" \\
+  -d '{ "name": "Updated Lego Set" }' \\
+  "http://localhost:3001/toys/60dcb1b8ab23a518f3b382d4"
+    </code></pre>
+
+    <h3>Delete Toy</h3>
+    <p>DELETE <code>/toys/:id</code></p>
+    <p>Delete a toy by ID.</p>
+    <pre><code>
+curl -X DELETE -H "x-api-key: your_jwt_token_here" \\
+  "http://localhost:3001/toys/60dcb1b8ab23a518f3b382d4"
+    </code></pre>
+
+    <h3>Get Toys by Price Range</h3>
+    <p>GET <code>/toys/prices/?min=min_price&max=max_price</code></p>
+    <p>Retrieve toys within a specified price range.</p>
+    <pre><code>
+curl -X GET "http://localhost:3001/toys/prices/?min=10&max=50"
+    </code></pre>
+
+    <h3>Get Single Toy by ID</h3>
+    <p>GET <code>/toys/single/:id</code></p>
+    <p>Retrieve a single toy by its ID.</p>
+    <pre><code>
+curl -X GET "http://localhost:3001/toys/single/60dcb1b8ab23a518f3b382d4"
+    </code></pre>
+
+    <h3>Get Count of Toys</h3>
+    <p>GET <code>/toys/count</code></p>
+    <p>Retrieve the total count of toys in the system.</p>
+    <pre><code>
+curl -X GET "http://localhost:3001/toys/count"
+    </code></pre>
+
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Rafi Gabizon. All rights reserved.<br>fullstack developer | MongoDB | Node.js.</p>
+  </footer>
+</body>
+</html>
